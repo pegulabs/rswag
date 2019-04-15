@@ -6,6 +6,7 @@ module Rswag
       attr_reader :template_locations
       attr_accessor :config_object
       attr_accessor :oauth_config_object
+      attr_accessor :nonce
       attr_reader :assets_root
 
       def initialize

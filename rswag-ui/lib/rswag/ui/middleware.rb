@@ -8,12 +8,14 @@ module Rswag
       end
 
       def call(env)
-        if base_path?(env) 
+        if base_path?(env)
           redirect_uri = env['SCRIPT_NAME'].chomp('/') + '/index.html'
           return [ 301, { 'Location' => redirect_uri }, [ ] ]
         end
 
         if index_path?(env)
+          request = ActionDispatch::Request.new(env)
+          @config.nonce = request.content_security_policy_nonce
           return [ 200, { 'Content-Type' => 'text/html' }, [ render_template ] ]
         end
 

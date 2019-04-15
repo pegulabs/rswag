@@ -68,7 +68,7 @@
 <div id="swagger-ui"></div>
 
 <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
-<script>
+<script nonce="<%= @nonce %>">
   if (window.navigator.userAgent.indexOf("Edge") > -1) {
     console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
     window.fetch = undefined;
@@ -77,7 +77,7 @@
 
 <script src="./swagger-ui-bundle.js"> </script>
 <script src="./swagger-ui-standalone-preset.js"> </script>
-<script>
+<script nonce="<%= @nonce %>">
   window.onload = function () {
     var configObject = JSON.parse('<%= config_object.to_json %>');
     var oauthConfigObject = JSON.parse('<%= oauth_config_object.to_json %>');
